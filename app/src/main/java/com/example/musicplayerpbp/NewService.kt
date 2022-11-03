@@ -20,6 +20,8 @@ class NewService : Service() {
             player.stop()
             player.release()
         }
+
+
         if (type == "instrumental") {
             player = MediaPlayer.create(this, R.raw.instrument)
         } else if (type == "nyanyian") {
