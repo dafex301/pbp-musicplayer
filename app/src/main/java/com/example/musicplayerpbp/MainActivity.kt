@@ -4,6 +4,8 @@ import android.content.Intent
 import android.os.Bundle
 import android.view.View
 import android.widget.Button
+import android.widget.ImageView
+import android.widget.TextView
 import androidx.appcompat.app.AppCompatActivity
 
 class MainActivity : AppCompatActivity(), View.OnClickListener {
@@ -14,11 +16,17 @@ class MainActivity : AppCompatActivity(), View.OnClickListener {
     private var prev: Button? = null
     private var piano: Button? = null
     private var pause: Button? = null
+    private var songTitle: TextView? = null
+    private var fotoLagu: ImageView? = null
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
 
+        // songtitle
+        songTitle = findViewById(R.id.tv_songTitle)
+        // imageview
+        fotoLagu= findViewById(R.id.iv_musicImg)
         // assigning ID of startButton
         // to the object start
 //        start = findViewById<View>(R.id.instrumental) as Button
@@ -45,14 +53,23 @@ class MainActivity : AppCompatActivity(), View.OnClickListener {
         // and conditionally send intent of the type
         // of the song to be played
         if (view.id == R.id.btn_prev) {
+            // change imageView
+            fotoLagu!!.setImageResource(R.drawable.instrument)
+            //change songTitle
+            songTitle!!.setText("Indonesia Raya Ver. Instrumental")
             val intent = Intent(this, NewService::class.java)
             intent.putExtra("type", "instrumental")
             startService(intent)
         } else if (view.id == R.id.btn_play) {
+            //change songTitle
+            fotoLagu!!.setImageResource(R.drawable.idnraya)
+            songTitle!!.setText("Indonesia Raya Tiga Stanza")
             val intent = Intent(this, NewService::class.java)
             intent.putExtra("type", "nyanyian")
             startService(intent)
         } else if (view.id == R.id.btn_next) {
+            fotoLagu!!.setImageResource(R.drawable.piano)
+            songTitle!!.setText("Indonesia Raya Ver. Piano")
             val intent = Intent(this, NewService::class.java)
             intent.putExtra("type", "piano")
             startService(intent)

@@ -16,6 +16,10 @@ class NewService : Service() {
     // also receive the type of the button to play song accordingly
     override fun onStartCommand(intent: Intent, flags: Int, startId: Int): Int {
         val type = intent.getStringExtra("type")
+        if (this::player.isInitialized) {
+            player.stop()
+            player.release()
+        }
         if (type == "instrumental") {
             player = MediaPlayer.create(this, R.raw.instrument)
         } else if (type == "nyanyian") {
