@@ -86,8 +86,8 @@ class MainActivity : AppCompatActivity(), View.OnClickListener {
                     fotoLagu!!.setImageResource(R.drawable.idnraya)
                 } else if (songs.indexOf(songTitle!!.text) == 2) {
                     fotoLagu!!.setImageResource(R.drawable.piano)
-                } 
-            } 
+                }
+            }
         } else if (view.id == R.id.btn_play) {
         //if there is no song playing, play the first song
             if (!this::player.isInitialized) {
@@ -96,7 +96,7 @@ class MainActivity : AppCompatActivity(), View.OnClickListener {
                 startService(intent)
                 songTitle!!.text = songs[0]
                 fotoLagu!!.setImageResource(R.drawable.instrument)
-            } 
-        } 
-    } 
+            }
+        }
+    }
 }
