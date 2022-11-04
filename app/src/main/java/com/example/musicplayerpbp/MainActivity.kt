@@ -73,6 +73,21 @@ class MainActivity : AppCompatActivity(), View.OnClickListener {
                     fotoLagu!!.setImageResource(R.drawable.piano)
                 }
             }
+                    //if there is a next song, play it
+            if (songs.indexOf(songTitle!!.text) > 0) {
+                val intent = Intent(this, NewService::class.java)
+                intent.putExtra("type", songs[songs.indexOf(songTitle!!.text) - 1])
+                startService(intent)
+                songTitle!!.text = songs[songs.indexOf(songTitle!!.text) - 1]
+                if (songs.indexOf(songTitle!!.text) == 0) {
+                    fotoLagu!!.setImageResource(R.drawable.instrument)
+                } else if (songs.indexOf(songTitle!!.text) == 1) {
+                    fotoLagu!!.setImageResource(R.drawable.idnraya)
+                } else if (songs.indexOf(songTitle!!.text) == 2) {
+                    fotoLagu!!.setImageResource(R.drawable.piano)
+                }
+            }
+            //
         } else if (view.id == R.id.btn_next) {
         //if there is a next song, play it
             if (songs.indexOf(songTitle!!.text) < songs.size - 1) {
